@@ -32,7 +32,7 @@ class Button extends React.Component {
 
   render() {
     const { disabled } = this.props;
-    const styles = this.props.styles || buttonStyles;
+    const styles = this.props.styles || buttonStyleSheet;
 
     return (
       <div
@@ -41,7 +41,7 @@ class Button extends React.Component {
         onMouseDown={::this.handleMouseDown}
         onMouseUp={::this.handleMouseUp}
         className={css(styles.base, styles.button, disabled && styles.disabled)}
-        onClick={!this.props.disabled && this.props.onClick}
+        onClick={!disabled && this.props.onClick}
         onKeyDown={::this.handleKeyDown}
         onFocus={this.props.onFocus}
       >
@@ -57,7 +57,7 @@ const disabled = {
   color: '#888'
 };
 
-export const buttonStyles = StyleSheet.create({
+export const buttonStyles = {
   base: {
     cursor: 'default',
     display: 'inline-flex',
@@ -91,6 +91,8 @@ export const buttonStyles = StyleSheet.create({
     ':hover': disabled,
     ':active': disabled
   }
-});
+};
+
+const buttonStyleSheet = StyleSheet.create(buttonStyles);
 
 export default Button;

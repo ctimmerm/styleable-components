@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { StyleSheet } from 'aphrodite';
+import merge from 'deepmerge';
 
-import { merge, extract } from './utils/merge';
 import Button, { buttonStyles } from './components/button';
 
 const App = () => (
@@ -17,7 +17,7 @@ const App = () => (
 
 const styles = StyleSheet.create({
   button: {
-    ...extract(buttonStyles).base,
+    ...buttonStyles.base,
     border: '2px solid lightskyblue',
     cursor: 'pointer',
 
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const wide = merge(buttonStyles, {
+const wide = StyleSheet.create(merge(buttonStyles, {
   button: { width: 400 }
-});
+}));
 
 ReactDOM.render(<App />, document.getElementById('main'));
