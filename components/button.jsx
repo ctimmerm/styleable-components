@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import styles from '../styles/button';
+import buttonStyles from '../styles/button';
 
 class Button extends React.Component {
   static propTypes = {
@@ -12,7 +12,7 @@ class Button extends React.Component {
   };
 
   static defaultProps = {
-    styles
+    styles: buttonStyles
   };
 
   handleKeyDown(event) {
@@ -38,7 +38,11 @@ class Button extends React.Component {
   }
 
   render() {
-    const { styles, disabled, onClick } = this.props;
+    const { disabled, onClick } = this.props;
+    const styles = this.props.styles instanceof Function
+      ? this.props.styles(buttonStyles)
+      : this.props.styles;
+
     const classes = [styles.button];
     if (disabled) classes.push(styles.disabled);
 

@@ -11,7 +11,9 @@ const App = () => (
     <br />
     <Button styles={flashy}>Styled</Button>
     <br />
-    <Button styles={noGradient}>Woohoo</Button>
+    <Button styles={styles => ({ ...styles, ...noGradient })}>
+      Woohoo
+    </Button>
   </div>
 );
 
